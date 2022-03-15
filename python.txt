@@ -1,0 +1,62 @@
+
+عنا في ليست كلمات بينها فواصل يبحث فيها 
+# KEY WORDS SEARCH
+key_words= pd.read_excel('key_words.xlsx')
+key_words["PatternProfile"] = key_words["Profile"] + ' / ' + key_words["Pattern"]
+
+for i in range(len(df_test_predicted2)):
+        if any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[1].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[1]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[2].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[2]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[3].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] = key_words.PatternProfile[3]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[4].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[4]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[5].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[5]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[6].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[6]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[7].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[7]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[8].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[8]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[9].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[9]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[10].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[10]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[11].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[11]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[12].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[12]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[13].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[13]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[14].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] = key_words.PatternProfile[14]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[15].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[15]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[16].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[16]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[17].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[17]
+        elif any(word in df_test_predicted2.SZD_SZNG_DESC[i] for word in key_words.KEY[18].split("-")):
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  key_words.PatternProfile[18]
+        else:
+            df_test_predicted2.at[i, 'New_Pattern_Profile'] =  "Not Classified "
+    
+  
+    
+
+
+df_test_predicted2.to_csv (r'تصنيف القضايا والمحاضر' + timestr +'.csv',encoding="utf-8-sig", index = False, header=True)
+
+------------------------------------------------------------------------------------------------------------------------
+حذف الrows اللي تحتوي هذي الكلمات
+adsWords = ['تسجيل','سجل','رقم','عرض','احصل','ندعوكم','دعوه','الساعة','جوال']
+data = data[~data.content.str.contains('|'.join(adsWords))]
+-------------------------------------------------------------
+استخراج الارقام من النص 
+import re
+data['number'] = data['content'].apply(lambda x:re.findall(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]', x))
+
+---------------------------------------------------------------------------------------
